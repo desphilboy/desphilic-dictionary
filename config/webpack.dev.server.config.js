@@ -3,11 +3,11 @@ var path = require('path');
 module.exports = {
     mode: "development",
     entry: [
-        path.join(__dirname, '../src/server/index.js')
+        path.join(__dirname, '/../src/server/index.js')
     ],
     module: {
         rules: [{
-            test: /\.(js|jsx)$/,
+            test: /\.(js|jsx|mjs)$/,
             exclude: /node_modules/,
             loader: 'babel-loader',
         }]

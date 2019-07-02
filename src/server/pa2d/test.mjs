@@ -1,0 +1,20 @@
+import { lookupForDesphilic } from './find-desphilic.mjs';
+
+lookupForDesphilic('ایمان');
+lookupForDesphilic('استعلام');
+lookupForDesphilic('پهناور');
+lookupForDesphilic('ستایش');
+lookupForDesphilic('شام');
+lookupForDesphilic('ما');
+lookupForDesphilic('من');
+lookupForDesphilic('تو');
+lookupForDesphilic('توطىه');
+lookupForDesphilic('توهم');
+lookupForDesphilic('منظره');
+lookupForDesphilic('شمارش');
+lookupForDesphilic('شما');
+lookupForDesphilic('شماره');
+lookupForDesphilic('شمارگان');
+lookupForDesphilic('مار');
+lookupForDesphilic('مارال');
+lookupForDesphilic('مارام');

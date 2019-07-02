@@ -3,14 +3,25 @@
   "version": "1.0.0",
   "description": "Persian to multi-languagen dictionary",
   "repository": "github.com/Desphilboy/desphilic-dictionary.git",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "test": "jest",
     "clean:server": "rm -rf server-dist",
+    "clean:client": "rm -rf client-dist",
+    "clean": "npm-run-all clean:server clean:client",
     "static:server": "mkdir server-dist",
-    "build:server": "webpack  --watch --config ./config/webpack.dev.server.config.js & nodemon ./server-dist/server-bundle.js",
-    "start:server": "npm-run-all clean:server static:server build:server",
-    "start": ""
+    "static:client": "mkdir client-dist",
+    "static": "npm-run-all static:server static:client",
+    "run:server": "webpack  --config ./config/webpack.dev.server.config.js & nodemon ./server-dist/server-bundle.js",
+    "run:client": "webpack  --watch --config ./config/webpack.dev.client.config.js & webpack-dev-server --config ./config/webpack.dev.client.config.js",
+    "build:server": "webpack  --config ./config/webpack.dev.server.config.js",
+    "build:client": "webpack  --config ./config/webpack.dev.client.config.js",
+    "start": "npm run run:server & npm run run:client",
+    "cleanbuild": "npm run clean & npm run static",
+    "commit": "git-cz",
+    "release": "standard-version",
+    "copy:client": "scp -r client-dist/** desphilic@www.desphilic.com:/home/desphilic/www",
+    "deploy:client": "npm run clean:client & npm run static:client & npm run build:client & npm run copy:client"
   },
   "keywords": [
     "romanized",
@@ -23,6 +34,8 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@std/esm": "^0.26.0",
+    "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -35,17 +48,26 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "recompose": "^0.30.0",
+    "styled-components": "^4.3.2",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"
   },
   "devDependencies": {
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
-    "standard-version": "^6.0.1"
+    "eslint": "^6.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "standard-version": "^6.0.1",
+    "webpack-dev-server": "^3.7.2"
   },
   "jest": {
     "setupFilesAfterEnv": [
       "./config/testSetup.js"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
