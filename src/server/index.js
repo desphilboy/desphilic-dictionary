@@ -13,6 +13,7 @@ import { lookupForDesphilic } from './pa2d/find-desphilic.mjs';
 // initialize our express app
 
 function findPersoArabicWord(req, res) {
+	console.log(req);
 	const persoArabicword = req.params.word || '';
 	if (!!persoArabicword) {
 		const desphilic = lookupForDesphilic(persoArabicword);

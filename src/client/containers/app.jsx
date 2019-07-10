@@ -1,7 +1,14 @@
 import React from "react";
-import { WordInputStyle } from '../components/word-input.jsx';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { store } from '../redux';
+import { WordInputComponent } from '../components/word-input.jsx';
 
 export const App = () =>
-	<div>
-		<WordInputStyle/>
-	</div>;
+	<Provider store={store}>
+		<BrowserRouter> 
+		<div>
+			<Route path="/" component={WordInputComponent}/>
+		</div>
+		</BrowserRouter>
+	</Provider>;

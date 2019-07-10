@@ -10,7 +10,7 @@ module.exports = {
             {
                 test: /\.(js|jsx|mjs)$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                loader: "babel-loader",
             }
         ]
     },
