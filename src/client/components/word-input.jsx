@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { lookupRequest } from '../redux/look-up/look-up.reducer.js';
 
 const WordInputSection = styled.section`
   padding: 4px;
@@ -35,16 +38,28 @@ const WordInputSection = styled.section`
 `;
 
 let word;
+const onTextChange = evt => {word = evt.target.value};
 
-const onTextChange = evt => word = evt.target.value;
 
-const lookup = () => fetch(`http://localhost:9090/perso-arabic/${word}`, {
-  method: 'GET'
-}).then(res => console.log(res.data));
-
-export const WordInputStyle = () => 
+const WordInput = ({ lookupWord, state }) =>(
 	<WordInputSection>
+		{JSON.stringify(state)}
 		<label>Perso-Arabic word:</label>
 		<input type="text" onChange={onTextChange}></input>
-		<button onClick={lookup}>Convert to desphilic</button> 
-	</WordInputSection>;
+		<button onClick={lookupWord}>Convert to desphilic</button> 
+	</WordInputSection>
+);
+
+const mapDispatchToProps = dispatch => ({
+	lookupWord: () => dispatch(lookupRequest(word)),
+});
+
+const mapStateToProps = state => ({
+	state,
+});
+
+WordInput.propTypes = {
+	lookupWord: PropTypes.func,
+};
+
+export const WordInputComponent = connect(mapStateToProps, mapDispatchToProps)(WordInput);

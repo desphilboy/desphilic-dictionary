@@ -1,7 +1,11 @@
 import React from "react";
-import { WordInputStyle } from '../components/word-input.jsx';
+import { Provider } from 'react-redux';
+import { store } from '../redux';
+import { WordInputComponent } from '../components/word-input.jsx';
 
 export const App = () =>
-	<div>
-		<WordInputStyle/>
-	</div>;
+	<Provider store={store}>
+		<div>
+			<WordInputComponent/>
+		</div>
+	</Provider>;
