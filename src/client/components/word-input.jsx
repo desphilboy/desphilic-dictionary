@@ -53,7 +53,7 @@ export const WordInput = ({ handleSubmit, onSubmit}) => {
 	);
 };
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
 	onSubmit: ({ word }) => dispatch(lookupStart(word)),
 });
 
@@ -75,3 +75,5 @@ export const WordInputComponent = compose(
 	reduxForm({ form: 'wordInput'}),
 	connect(mapStateToProps, mapDispatchToProps),
 )(WordInput);
+
+export default WordInputComponent;
